@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-if [ -d "$HOME/.local/share/JetBrains/Toolbox" ]; then
-    echo 'It is already installed'
-    exit
-fi
+test -x "$HOME/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox" && exit
 
 if ! [ -x "$(command -v jq)" ]; then
   sudo apt-get install -y jq
