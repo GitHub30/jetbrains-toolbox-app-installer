@@ -18,11 +18,11 @@ if ! sha256sum --quiet --check "$checksum_filename"; then
     echo 'Checksum verification failed'
     exit 1
 fi
+test -f "$checksum_filename" && rm "$checksum_filename"
+
+tar xf "$download_filename"
+test -f "$download_filename" && rm "$download_filename"
 
 extract_dir=$(tar tf "$download_filename" | head -1)
-tar xf "$download_filename"
 "${extract_dir}jetbrains-toolbox"
-
-test -f "$download_filename" && rm "$download_filename"
-test -f "$checksum_filename" && rm "$checksum_filename"
 test -d "$extract_dir" && rm -r "$extract_dir"
