@@ -17,7 +17,7 @@ checksum_link=$(echo "$json" | jq -r .TBA[0].downloads.linux.checksumLink)
 download_filename=$(basename "$download_link")
 checksum_filename=$(basename "$checksum_link")
 
-cd $(xdg-user-dir DOWNLOAD)
+cd "$(xdg-user-dir DOWNLOAD)"
 wget "$download_link" "$checksum_link"
 
 if ! sha256sum --quiet --check "$checksum_filename"; then
