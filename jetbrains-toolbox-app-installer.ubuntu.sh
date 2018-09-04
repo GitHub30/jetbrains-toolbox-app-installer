@@ -16,6 +16,8 @@ wget "$download_link" "$checksum_link"
 
 if ! sha256sum --quiet --check "$checksum_filename"; then
     echo 'Checksum verification failed'
+    test -f "$download_filename" && rm "$download_filename"
+    test -f "$checksum_filename" && rm "$checksum_filename"
     exit 1
 fi
 test -f "$checksum_filename" && rm "$checksum_filename"
