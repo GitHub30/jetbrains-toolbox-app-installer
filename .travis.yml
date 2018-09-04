@@ -1,4 +1,4 @@
 language: bash
 script:
-  - modprobe fuse
+  - sudo modprobe fuse
   - bash jetbrains-toolbox-app-installer.ubuntu.sh
