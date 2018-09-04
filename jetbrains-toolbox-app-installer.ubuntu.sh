@@ -2,11 +2,8 @@
 
 test -x "$HOME/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox" && exit
 
-if ! [ -x "$(command -v jq)" ]; then
-  sudo apt-get install -y jq
-  command -v jq || exit 1
-fi
-
+command -v jq || (sudo apt-get update && sudo apt-get install -y jq)
+command -v jq || exit 1
 
 json=$(wget -qO - "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release&build=&_=$(date +%s%3N)")
 download_link=$(echo "$json" | jq -r .TBA[0].downloads.linux.link)
