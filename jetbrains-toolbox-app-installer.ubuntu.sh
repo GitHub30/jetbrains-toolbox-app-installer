@@ -20,9 +20,9 @@ if ! sha256sum --quiet --check "$checksum_filename"; then
 fi
 test -f "$checksum_filename" && rm "$checksum_filename"
 
+extract_dir=$(tar tf "$download_filename" | head -1)
 tar xf "$download_filename"
 test -f "$download_filename" && rm "$download_filename"
 
-extract_dir=$(tar tf "$download_filename" | head -1)
 "${extract_dir}jetbrains-toolbox"
 test -d "$extract_dir" && rm -r "$extract_dir"
