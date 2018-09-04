@@ -1,9 +1,7 @@
 language: bash
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
 script:
+  - sudo apt-get update
+  - sudo apt-get install -y xvfb
   - sudo modprobe fuse
-  - bash jetbrains-toolbox-app-installer.ubuntu.sh
+  - xvfb-run bash jetbrains-toolbox-app-installer.ubuntu.sh
   - test -x "$HOME/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox" || exit 1
